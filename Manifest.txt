@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/growl_glue
+lib/growl_glue.rb
+test/test_growl_glue.rb
