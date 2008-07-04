@@ -2,6 +2,11 @@ History.txt
 Manifest.txt
 README.txt
 Rakefile
-bin/growl_glue
+lib/bin/growl_notify.sh
+lib/growl_glue/autotest.rb
+lib/growl_glue/commands.rb
+lib/growl_glue/config.rb
+lib/growl_glue/util.rb
 lib/growl_glue.rb
-test/test_growl_glue.rb
+lib/img/fail.png
+lib/img/ok.png

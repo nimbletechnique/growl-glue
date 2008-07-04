@@ -1,32 +1,69 @@
-= GrowlGlue
-
-* FIX (url)
-
 == DESCRIPTION:
 
-FIX (describe your package)
+Provides an easy way to integrate Growl notifications into various activities.  
 
-== FEATURES/PROBLEMS:
+== Autotest Features:
 
-* FIX (list of features or problems)
+* Easy configuration of growl notifications in ~/.autotest
+* Comes bundled with sample green/red images, or you can supply your own
+* Ability to specify OS X speech options (e.g. "Oh No!", if test failure)
+* RSpec support
+* Test::Unit support
 
-== SYNOPSIS:
+== Autotest Growl Integration:
 
-  FIX (code sample of usage)
+The Autotest growl configuration should happen in ~/.autotest:
+
+  require 'growl_glue'
+  GrowlGlue::Autotest.setup do |glue|
+    ...
+  end
+
+If you are using an older version of Growl (< 1.1.4), it is recommended that you use network notifications due to a bug in Growl on OS X 10.5. Inside of the Growl Preferences pane, on the Network tab, make sure the "Listen for incoming notifications" checkbox is checked, and then *restart Growl*.  Then configure GrowlGlue inside of the setup block:
+
+  glue.notification :use_network_notifications => true
+
+OS X Speech:
+
+  glue.say :success => "Great Job!", :failure => "WTF mate?"
+
+If you have *sndplay* compiled and in the path, you can have different sounds played based on test success or failure.  The "location" below is optional, as it defaults to "/System/Library/Sounds":
+
+  glue.sound :success => "Glass.aiff"
+  glue.sound :failure => "Basso.aiff"
+  glue.sound :location => "/System/Library/Sounds/" (optional)
+
+GrowlGlue comes with success and error images it will use on test success and error, respectively.
+If you wish to supply your own, for example:
+
+  glue.image :success => "~/Library/autotest/success.png"
+  glue.image :failure => "~/Library/autotest/failure.png"
+
+By default, "Tests Passed" and "Tests Failed" will be used as the growl titles. You can supply your own, though:
+
+  glue.title :success => "Love", :failure => "Hatred"
+
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* Growl 1.1.4 (may work on previous versions but not tested)
+* Growlnotify Extra installed
+
+== OPTIONAL:
+
+* sndplay (for #sound notification)
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install growl_glue
+* Download Growl from http://growl.info
+* After installing Growl, install the Growlnotify Extra included in the DMG
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2008 FIX
+Copyright (c) 2008 Nimble Technique, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
