@@ -71,7 +71,7 @@ As an example, this is what I normally use:
 
 == INSTALL:
 
-* sudo gem install growl_glue -y
+* sudo gem install growl-glue
 * Download Growl from http://growl.info
 * After installing Growl, install the Growlnotify Extra included in the DMG
 * After Growl is installed, configure your ~/.autotest file as described above

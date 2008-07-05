@@ -1,6 +1,6 @@
+=== 1.0.1 / 2008-07-05
+* Fixed some documentation, as the project changed from growl_glue to growl-glue
+
 === 1.0.0 / 2008-07-04
 
-* 1 major enhancement
-
-  * Birthday!
-
+* Project created
