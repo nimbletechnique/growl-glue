@@ -1,6 +1,6 @@
 == DESCRIPTION:
 
-Provides an easy way to integrate Growl notifications into various activities.  
+Simplifies Growl configuration for Autotest.
 
 == Autotest Features:
 
@@ -15,39 +15,49 @@ Provides an easy way to integrate Growl notifications into various activities.
 The Autotest growl configuration should happen in ~/.autotest. To get up and running very quickly with basic notifications + images:
 
   require 'growl_glue'
-  GrowlGlue::Autotest.setup
+  GrowlGlue::Autotest.initialize
 
   
 If you wish to customize, further, you simply need to supply your own block, to which the GrowlGlue configuration object will be passed:
 
   require 'growl_glue'
-  GrowlGlue::Autotest.setup do |glue|
+  GrowlGlue::Autotest.initialize do |config|
     ...
   end
 
 It is recommended that you use network notifications due to a bug in Growl on OS X 10.5. Inside of the Growl Preferences pane, on the Network tab, make sure the "Listen for incoming notifications" checkbox is checked, and then *restart Growl*.  Then configure GrowlGlue inside of the setup block:
 
-  glue.notification :use_network_notifications => true
+  config.notification :use_network_notifications => true
 
 OS X Speech:
 
-  glue.say :success => "Great Job!", :failure => "WTF mate?"
+  config.say :success => "Great Job!", :failure => "WTF mate?"
 
 If you have *sndplay* compiled and in the path, you can have different sounds played based on test success or failure.  The "location" below is optional, as it defaults to "/System/Library/Sounds":
 
-  glue.sound :success => "Glass.aiff"
-  glue.sound :failure => "Basso.aiff"
-  glue.sound :location => "/System/Library/Sounds/" (optional)
+  config.sound :success => "Glass.aiff"
+  config.sound :failure => "Basso.aiff"
+  config.sound :location => "/System/Library/Sounds/" (optional)
 
 GrowlGlue comes with success and error images it will use on test success and error, respectively.
 If you wish to supply your own, for example:
 
-  glue.image :success => "~/Library/autotest/success.png"
-  glue.image :failure => "~/Library/autotest/failure.png"
+  config.image :success => "~/Library/autotest/success.png"
+  config.image :failure => "~/Library/autotest/failure.png"
 
 By default, "Tests Passed" and "Tests Failed" will be used as the growl titles. You can supply your own, though:
 
-  glue.title :success => "Love", :failure => "Hatred"
+  config.title :success => "Love", :failure => "Hatred"
+
+As an example, this is what I normally use:
+
+  GrowlGlue::Autotest.initialize do |config|
+  
+    config.notification :use_network_notifications => true
+    config.title :success => "Love", :failure => "Hate"
+    config.say :failure => "Something is horribly wrong!"
+  
+  end
 
 
 == REQUIREMENTS:
@@ -61,9 +71,17 @@ By default, "Tests Passed" and "Tests Failed" will be used as the growl titles. 
 
 == INSTALL:
 
-* sudo gem install growl_glue
+* sudo gem install growl_glue -y
 * Download Growl from http://growl.info
 * After installing Growl, install the Growlnotify Extra included in the DMG
+* After Growl is installed, configure your ~/.autotest file as described above
+
+== BUGS / ISSUES:
+
+Please let me know (gluedtomyseat@gmail.com) if you encounter any issues.  You can also follow or fork development on the github project:
+
+http://github.com/oculardisaster/growl-glue/tree/master
+
 
 == LICENSE:
 

@@ -4,7 +4,7 @@ module GrowlGlue
     
     ERROR_PRI = 2
     
-    def self.setup
+    def self.initialize
       @config = Config.new
       
       @config.sound :location => "/System/Library/Sounds/"
