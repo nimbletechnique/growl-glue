@@ -8,5 +8,6 @@ lib/growl_glue/commands.rb
 lib/growl_glue/config.rb
 lib/growl_glue/util.rb
 lib/growl_glue.rb
-lib/img/fail.png
-lib/img/ok.png
+lib/img/failure.png
+lib/img/pending.png
+lib/img/success.png

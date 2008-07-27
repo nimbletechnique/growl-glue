@@ -36,6 +36,7 @@ OS X Speech:
 If you have *sndplay* compiled and in the path, you can have different sounds played based on test success or failure.  The "location" below is optional, as it defaults to "/System/Library/Sounds":
 
   config.sound :success => "Glass.aiff"
+  config.sound :pending => "Glass.aiff"
   config.sound :failure => "Basso.aiff"
   config.sound :location => "/System/Library/Sounds/" (optional)
 
@@ -43,18 +44,19 @@ GrowlGlue comes with success and error images it will use on test success and er
 If you wish to supply your own, for example:
 
   config.image :success => "~/Library/autotest/success.png"
+  config.image :pending => "~/Library/autotest/pending.png"
   config.image :failure => "~/Library/autotest/failure.png"
 
 By default, "Tests Passed" and "Tests Failed" will be used as the growl titles. You can supply your own, though:
 
-  config.title :success => "Love", :failure => "Hatred"
+  config.title :success => "Love", :failure => "Hatred", :pending => "Well, OK!"
 
 As an example, this is what I normally use:
 
   GrowlGlue::Autotest.initialize do |config|
   
     config.notification :use_network_notifications => true
-    config.title :success => "Love", :failure => "Hate"
+    config.title :success => "Love", :failure => "Hate", :pending => "Keep Going!"
     config.say :failure => "Something is horribly wrong!"
   
   end
@@ -82,6 +84,9 @@ Please let me know (gluedtomyseat@gmail.com) if you encounter any issues.  You c
 
 http://github.com/oculardisaster/growl-glue/tree/master
 
+== AUTHORS
+
+* Collin VanDyck <gluedtomyseat@gmail.com>
 
 == LICENSE:
 

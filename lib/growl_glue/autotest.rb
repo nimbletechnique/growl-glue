@@ -10,10 +10,12 @@ module GrowlGlue
       @config.sound :location => "/System/Library/Sounds/"
       @config.commands :safe_growlnotify => File.join(gem_home_dir, "lib", "bin", "growl_notify.sh")
       
-      @config.image :failure => File.join(gem_home_dir, "lib", "img", "fail.png")
-      @config.image :success => File.join(gem_home_dir, "lib", "img", "ok.png")
+      [:failure, :success, :pending].each do |status|
+        @config.image status => File.join(gem_home_dir, "lib", "img", "#{status}.png")
+      end
       
       @config.title :success => "Tests Passed"
+      @config.title :pending => "Tests Passed, Some Pending"
       @config.title :failure => "Tests Failed"
       
       yield @config if block_given?
@@ -65,17 +67,11 @@ module GrowlGlue
       end
     end
 
-    def self.notify(title, msg, img=nil, pri=1)
+    def self.notify(status, title, msg, img=nil, pri=1)
       with_commands do |commands|
         commands << growl(title, msg, img, pri)
-
-        if pri == ERROR_PRI
-          commands << say(@config.option(:say, :failure))
-          commands << sndplay(@config.option(:sound, :failure))
-        else
-          commands << say(@config.option(:say, :success))
-          commands << sndplay(@config.option(:sound, :success))
-        end
+        commands << say(@config.option(:say, status))
+        commands << sndplay(@config.option(:sound, status))
       end
     end
 
@@ -83,10 +79,13 @@ module GrowlGlue
     def self.rspec_results(results)
       output = results.slice(/(\d+)\s+examples?,\s*(\d+)\s+failures?(,\s*(\d+)\s+pending)?/)  
       if output  
-        if $~[2].to_i > 0  
-          notify @config.option(:title, :failure), "#{output}", @config.option(:image, :failure), 2  
+        successes, failures, pending = *([$~[1],$~[2],$~[4]].map { |x| x.to_i })
+        if failures > 0  
+          notify :failure, @config.option(:title, :failure), "#{output}", @config.option(:image, :failure), 2  
+        elsif pending > 0
+          notify :pending, @config.option(:title, :pending), "#{output}", @config.option(:image, :pending)
         else  
-          notify @config.option(:title, :success), "#{output}", @config.option(:image, :success)   
+          notify :success, @config.option(:title, :success), "#{output}", @config.option(:image, :success)   
         end  
       end  
     end
@@ -96,9 +95,9 @@ module GrowlGlue
       output = results.slice(/(\d+)\s+tests?,\s*(\d+)\s+assertions?,\s*(\d+)\s+failures?,\s*(\d+)\s+errors?/)  
       if output  
         if (($~[3].to_i > 0) or ($~[4].to_i > 0))  
-          notify @config.option(:title, :failure), "#{output}",  @config.option(:image, :failure), 2  
+          notify :failure, @config.option(:title, :failure), "#{output}",  @config.option(:image, :failure), 2  
         else  
-          notify @config.option(:title, :success), "#{output}",  @config.option(:image, :success)   
+          notify :success, @config.option(:title, :success), "#{output}",  @config.option(:image, :success)   
         end  
       end  
     end

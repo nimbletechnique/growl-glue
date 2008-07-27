@@ -1,3 +1,6 @@
+=== 1.0.2 / 2008-07-27
+* Added support for the RSpec "pending" status
+
 === 1.0.1 / 2008-07-05
 * Fixed some documentation, as the project changed from growl_glue to growl-glue
 
