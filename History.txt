@@ -1,3 +1,6 @@
+=== 1.0.3 / 2008-07-29
+* OS X Text to Speech voice can now be configured for each status
+
 === 1.0.2 / 2008-07-27
 * Added support for the RSpec "pending" status
 

@@ -7,6 +7,7 @@ Simplifies Growl configuration for Autotest.
 * Easy configuration of growl notifications in ~/.autotest
 * Comes bundled with sample green/red images, or you can supply your own
 * Ability to specify OS X speech options (e.g. "Oh No!", if test failure)
+* Ability to use a different OS X voice for each status
 * RSpec support
 * Test::Unit support
 
@@ -31,7 +32,11 @@ It is recommended that you use network notifications due to a bug in Growl on OS
 
 OS X Speech:
 
-  config.say :success => "Great Job!", :failure => "WTF mate?"
+  config.say   :pending => "Almost there guy!"
+  config.voice :pending => "Boing"
+
+  config.say   :failure => "PANIC PANIC PANIC"
+  config.voice :failure => "Hysterical"
 
 If you have *sndplay* compiled and in the path, you can have different sounds played based on test success or failure.  The "location" below is optional, as it defaults to "/System/Library/Sounds":
 
@@ -54,11 +59,14 @@ By default, "Tests Passed" and "Tests Failed" will be used as the growl titles. 
 As an example, this is what I normally use:
 
   GrowlGlue::Autotest.initialize do |config|
-  
     config.notification :use_network_notifications => true
-    config.title :success => "Love", :failure => "Hate", :pending => "Keep Going!"
-    config.say :failure => "Something is horribly wrong!"
   
+    config.sound :success => "Glass.aiff"
+    config.sound :pending => "Glass.aiff"
+  
+    config.say   :failure => "PANIC PANIC PANIC"
+    config.voice :failure => "Hysterical"
+    config.sound :failure => "Basso.aiff"
   end
 
 
@@ -87,6 +95,14 @@ http://github.com/oculardisaster/growl-glue/tree/master
 == AUTHORS
 
 * Collin VanDyck <gluedtomyseat@gmail.com>
+
+== OTHER
+
+If you use my gem, and like it, it would be great to get a recommendation on Working with Rails:
+
+http://workingwithrails.com/recommendation/new/person/13224-collin-vandyck.
+
+Thanks!
 
 == LICENSE:
 

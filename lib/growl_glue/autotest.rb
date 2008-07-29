@@ -54,9 +54,10 @@ module GrowlGlue
       command.join(" ")
     end
 
-    def self.say(msg)
+    def self.say(msg, voice=nil)
       if msg
-        "say '#{msg.gsub(/'/,"")}'"
+        voice = "-v #{voice}" if voice
+        "say #{voice} '#{msg.gsub(/'/,"")}'"
       end
     end
 
@@ -70,7 +71,7 @@ module GrowlGlue
     def self.notify(status, title, msg, img=nil, pri=1)
       with_commands do |commands|
         commands << growl(title, msg, img, pri)
-        commands << say(@config.option(:say, status))
+        commands << say(@config.option(:say, status), @config.option(:voice, status))
         commands << sndplay(@config.option(:sound, status))
       end
     end
