@@ -88,13 +88,13 @@ As an example, this is what I normally use:
 
 == BUGS / ISSUES:
 
-Please let me know (collin at nimbletechnique dot com) if you encounter any issues.  You can also follow or fork development on the github project:
+Please let me know if you encounter any issues.  You can also follow or fork development on the github project:
 
 http://github.com/nimbletechnique/growl-glue/tree/master
 
 == AUTHORS
 
-* Collin VanDyck <gluedtomyseat@gmail.com>
+* Collin VanDyck <collin@nimbletechnique.com>
 
 == OTHER
 
