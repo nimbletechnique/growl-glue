@@ -1,3 +1,6 @@
+=== 1.0.4 / 2008-07-29
+* Updated documentation to point to new location on GitHub
+
 === 1.0.3 / 2008-07-29
 * OS X Text to Speech voice can now be configured for each status
 

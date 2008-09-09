@@ -88,9 +88,9 @@ As an example, this is what I normally use:
 
 == BUGS / ISSUES:
 
-Please let me know (gluedtomyseat@gmail.com) if you encounter any issues.  You can also follow or fork development on the github project:
+Please let me know (collin at nimbletechnique dot com) if you encounter any issues.  You can also follow or fork development on the github project:
 
-http://github.com/oculardisaster/growl-glue/tree/master
+http://github.com/nimbletechnique/growl-glue/tree/master
 
 == AUTHORS
 
