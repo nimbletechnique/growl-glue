@@ -1,3 +1,6 @@
+=== 1.0.5 / 2008-11-06
+* Fixed bug with regards to using voices with spaces in the names (e.g. Bad News)
+
 === 1.0.4 / 2008-07-29
 * Updated documentation to point to new location on GitHub
 

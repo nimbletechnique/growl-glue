@@ -56,7 +56,7 @@ module GrowlGlue
 
     def self.say(msg, voice=nil)
       if msg
-        voice = "-v #{voice}" if voice
+        voice = "-v '#{voice}'" if voice
         "say #{voice} '#{msg.gsub(/'/,"")}'"
       end
     end

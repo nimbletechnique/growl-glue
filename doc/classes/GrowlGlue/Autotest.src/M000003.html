@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>initialize (GrowlGlue::Autotest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/growl_glue/autotest.rb, line 7</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">initialize</span>
+      <span class="ruby-ivar">@config</span> = <span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>
+      
+      <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">sound</span> <span class="ruby-identifier">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/System/Library/Sounds/&quot;</span>
+      <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">commands</span> <span class="ruby-identifier">:safe_growlnotify</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">gem_home_dir</span>, <span class="ruby-value str">&quot;lib&quot;</span>, <span class="ruby-value str">&quot;bin&quot;</span>, <span class="ruby-value str">&quot;growl_notify.sh&quot;</span>)
+      
+      [<span class="ruby-identifier">:failure</span>, <span class="ruby-identifier">:success</span>, <span class="ruby-identifier">:pending</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">status</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">image</span> <span class="ruby-identifier">status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">gem_home_dir</span>, <span class="ruby-value str">&quot;lib&quot;</span>, <span class="ruby-value str">&quot;img&quot;</span>, <span class="ruby-node">&quot;#{status}.png&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">title</span> <span class="ruby-identifier">:success</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Tests Passed&quot;</span>
+      <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">title</span> <span class="ruby-identifier">:pending</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Tests Passed, Some Pending&quot;</span>
+      <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">title</span> <span class="ruby-identifier">:failure</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Tests Failed&quot;</span>
+      
+      <span class="ruby-keyword kw">yield</span> <span class="ruby-ivar">@config</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+      
+      <span class="ruby-identifier">add_hook</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
