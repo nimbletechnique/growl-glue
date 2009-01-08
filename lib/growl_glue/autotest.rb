@@ -64,7 +64,11 @@ module GrowlGlue
     def self.sndplay(sound)
       location = @config.option :sound, :location
       if sound and location
-        "sndplay #{location}/#{sound} > /dev/null 2>&1"
+        if (system("which afplay > /dev/null 2>&1"))
+          "afplay #{location}/#{sound} > /dev/null 2>&1"
+        else
+          "sndplay #{location}/#{sound} > /dev/null 2>&1"
+        end
       end
     end
 
