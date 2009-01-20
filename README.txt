@@ -8,6 +8,7 @@ Simplifies Growl configuration for Autotest.
 * Comes bundled with sample green/red images, or you can supply your own
 * Ability to specify OS X speech options (e.g. "Oh No!", if test failure)
 * Ability to use a different OS X voice for each status
+* Ability to specify sounds for success or failure conditions
 * RSpec support
 * Test::Unit support
 
@@ -38,15 +39,16 @@ OS X Speech:
   config.say   :failure => "PANIC PANIC PANIC"
   config.voice :failure => "Hysterical"
 
-If you have *sndplay* compiled and in the path, you can have different sounds played based on test success or failure.  The "location" below is optional, as it defaults to "/System/Library/Sounds":
+Audio Notifications:
+
+If you have *OS X 10.5* -or- *sndplay* compiled and in the path, you can have different sounds played based on test success or failure.  The "location" below is optional, as it defaults to "/System/Library/Sounds":
 
   config.sound :success => "Glass.aiff"
   config.sound :pending => "Glass.aiff"
   config.sound :failure => "Basso.aiff"
   config.sound :location => "/System/Library/Sounds/" (optional)
 
-GrowlGlue comes with success and error images it will use on test success and error, respectively.
-If you wish to supply your own, for example:
+GrowlGlue comes with success and error images it will use on test success and error, respectively. If you wish to supply your own, for example:
 
   config.image :success => "~/Library/autotest/success.png"
   config.image :pending => "~/Library/autotest/pending.png"
@@ -77,7 +79,7 @@ As an example, this is what I normally use:
 
 == OPTIONAL:
 
-* sndplay (for #sound notification)
+* sndplay for #sound notification (only needed outside of OS X 10.5).  If anyone can tell me if earlier versions of OS X have *afplay* please let me know.
 
 == INSTALL:
 

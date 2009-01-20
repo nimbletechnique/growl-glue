@@ -1,3 +1,6 @@
+=== 1.0.6 / 2009-01-20
+* Added in a change from "iconofthestoneage":http://github.com/iconofthestoneage to use afplay if available on Leopard.  This removes the sndplay dependency if being run on OS X 10.5.
+
 === 1.0.5 / 2008-11-06
 * Fixed bug with regards to using voices with spaces in the names (e.g. Bad News)
 
