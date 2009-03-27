@@ -1,3 +1,6 @@
+=== 1.0.7 / 2009-03-27
+* Added .mov on installing growlnotify extra
+
 === 1.0.6 / 2009-01-20
 * Added in a change from "iconofthestoneage":http://github.com/iconofthestoneage to use afplay if available on Leopard.  This removes the sndplay dependency if being run on OS X 10.5.
 
