@@ -76,6 +76,7 @@ As an example, this is what I normally use:
 
 * Growl 1.1.4 (may work on previous versions but not tested)
 * Growlnotify Extra installed
+* Note: you may reference "this video":http://growl-glue.rubyforge.org/files/InstallingGrowlNotify.mov to illustrate how to install growlnotify.
 
 == OPTIONAL:
 
